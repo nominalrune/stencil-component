@@ -10,8 +10,10 @@ export namespace Components {
         "resolution": "y"|"M"|"d"|"h"|"m"|"s";
     }
     interface TabComponent {
+    }
+    interface TabContent {
         "activeTab": number;
-        "tabCnt": number;
+        "tabId": number;
     }
 }
 declare global {
@@ -27,9 +29,16 @@ declare global {
         prototype: HTMLTabComponentElement;
         new (): HTMLTabComponentElement;
     };
+    interface HTMLTabContentElement extends Components.TabContent, HTMLStencilElement {
+    }
+    var HTMLTabContentElement: {
+        prototype: HTMLTabContentElement;
+        new (): HTMLTabContentElement;
+    };
     interface HTMLElementTagNameMap {
         "real-time": HTMLRealTimeElement;
         "tab-component": HTMLTabComponentElement;
+        "tab-content": HTMLTabContentElement;
     }
 }
 declare namespace LocalJSX {
@@ -37,12 +46,15 @@ declare namespace LocalJSX {
         "resolution"?: "y"|"M"|"d"|"h"|"m"|"s";
     }
     interface TabComponent {
+    }
+    interface TabContent {
         "activeTab"?: number;
-        "tabCnt"?: number;
+        "tabId"?: number;
     }
     interface IntrinsicElements {
         "real-time": RealTime;
         "tab-component": TabComponent;
+        "tab-content": TabContent;
     }
 }
 export { LocalJSX as JSX };
@@ -51,6 +63,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "real-time": LocalJSX.RealTime & JSXBase.HTMLAttributes<HTMLRealTimeElement>;
             "tab-component": LocalJSX.TabComponent & JSXBase.HTMLAttributes<HTMLTabComponentElement>;
+            "tab-content": LocalJSX.TabContent & JSXBase.HTMLAttributes<HTMLTabContentElement>;
         }
     }
 }

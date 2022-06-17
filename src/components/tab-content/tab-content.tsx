@@ -7,12 +7,12 @@ import { Component, Prop, h } from '@stencil/core';
 })
 export class TabContent {
   @Prop() activeTab: number;
-  @Prop() tabIndex: number;
+  @Prop() tabId: number;
 
 
   render() {
     return (
-      <div aria-selected={this.activeTab === this.tabIndex} class="tabs__content">
+      <div aria-selected={this.activeTab === this.tabId} class="tabs__content">
         <slot />
       </div>
     );
